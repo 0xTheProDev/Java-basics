@@ -8,33 +8,26 @@ class Animal{
     int leg;
     Animal(int l){
         leg = l;
-    }
-    void printStatus(){
-        System.out.println("This is an animal");
+        System.out.println("An animal with "+ leg + " is created!");
     }
 }
 
 class Dog extends Animal{
+    String breed;
     Dog(){
         super(4);
+        System.out.println("A Dog is created!");
     }
-    void printStatus(){
-        System.out.println("This is a Dog!");
-    }
-}
-
-class Spaniel extends Dog{
-    void printStatus(){
-        super.printStatus();
-        System.out.println("The breed is: Spaniel");
+    Dog(String b){
+        this();
+        breed = b;
+        System.out.println("The Breed is " + breed +".");
     }
 }
 
 class Main{
     public static void main(String args[]){
         Animal dog = new Dog();
-        dog.printStatus();
-        Dog sp = new Spaniel();
-        sp.printStatus();
+        Dog sp = new Dog("Spaniel");
     }
 }

@@ -26,7 +26,7 @@ class Student extends Person{
     }
 }
 
-class Test{
+class Main{
     public static void main(String args[]){
         Student stud = new Student("Progyan", 14, 1997);
         stud.printData();

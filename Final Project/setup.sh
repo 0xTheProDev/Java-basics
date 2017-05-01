@@ -1,4 +1,4 @@
 #!/bin/sh
 # This script setup environment for CLASSPATH
-CLASSPATH=$PWD:"$PWD/classes"; export CLASSPATH
-echo "Success"
+export CLASSPATH="$PWD:$PWD/classes:$CLASSPATH"
+echo "ENV Varibale Setup Successful"

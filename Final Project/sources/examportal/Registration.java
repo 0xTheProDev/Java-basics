@@ -1,15 +1,16 @@
 package examportal;
+import java.util.Calendar;
 
 public class Registration {
 	static int Counter;
-	private int regNo;
-	private int collegeID;
+	private String regNo;
 	
-	public Registration(int c) {
-		this.collegeID = c;
-		this.regNo = ++Counter;
+	public Registration(int c, int b) {
+		int year = Calendar.getInstance().get(Calendar.YEAR);
+		int reg = ++Counter;
+		this.regNo = new String("" + (year % 100) + c + b + (reg < 10 ? "00" : reg < 100 ? "0" : 0) + reg);
 	}
-	public void display() {
-		System.out.println(this.collegeID + this.regNo);
+	public String getID() {
+		return this.regNo;
 	}
 }

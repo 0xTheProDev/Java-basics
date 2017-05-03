@@ -23,18 +23,16 @@ public class Student extends Person {
 		sems[--sem].setGrade(g);
 	}
 	public double getGrade() {
-		if (this.CGPA == 0.0) {
-			double total = 0.0, sgpa = 0.0;
-			int N = 0;
-			for (int i = 0, n = sems.length; i < n; i++) {
-				sgpa = sems[i].getGrade();
-				if (sgpa == 0.0)
-					break;
-				total += sgpa;
-				N++;
-			}
-			this.CGPA = total / N;
+		double total = 0.0, sgpa = 0.0;
+		int N = 0;
+		for (int i = 0, n = sems.length; i < n; i++) {
+			sgpa = sems[i].getGrade();
+			if (sgpa == 0.0)
+				break;
+			total += sgpa;
+			N++;
 		}
+		this.CGPA = N == 0 ? 0.0 : total / N;
 		return this.CGPA;
 	}
 	public double getGrade(int sem) throws java.lang.Exception {

@@ -18,16 +18,16 @@ public class Semester {
 			this.courses[i].setGrade(g[i]);
 	}
 	public double getGrade() {
-		if (this.SGPA == 0.0) {
-			int credit = 0, grade = 0;
-			double total = 0;
-			for (int i = 0, n = courses.length; i < n; i++) {
-				grade = courses[i].getCredit();
-				credit += grade / courses[i].getGrade();
-				total += (double) grade;
-			}
-			this.SGPA = total / credit;
+		int credit = 0, grade = 0, cgrade = 0;
+		double total = 0.0;
+		for (int i = 0, n = courses.length; i < n; i++) {
+			grade = courses[i].getCredit();
+			cgrade = courses[i].getGrade();
+			if (cgrade != 0)
+				credit += grade / cgrade;
+			total += (double) grade;
 		}
+		this.SGPA = credit == 0 ? 0.0 : total / credit;
 		return this.SGPA;
 	}
 }

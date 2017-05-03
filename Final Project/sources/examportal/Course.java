@@ -17,6 +17,9 @@ public class Course {
 		this.grade = 0;
 		this.courseID = ++Counter;
 	}
+	public int courseID() {
+		return this.courseID;
+	}
 	public void setGrade(int g) throws java.lang.Exception {
 		if (g < 2 || g > 10)
 			throw new Exception("Course: Invalid grade assigned!");

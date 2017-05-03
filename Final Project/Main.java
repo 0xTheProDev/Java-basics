@@ -2,7 +2,7 @@ import examportal.*;
 import java.io.DataInputStream;
 
 public class Main {
-	public static void main(String args[]) throws IOException {
+	public static void main(String args[]) {
 		final int collegeID = 300, branchID = 215;
 		try {
 			Course cs[][] = {
@@ -15,55 +15,33 @@ public class Main {
 					new Course("Formal Language and Automata", 3)
 				}
 			};
-			Semester s[] = new Semester[cs.length];
+			Semester sems[] = new Semester[cs.length];
 			for (int i = 0, n = cs.length; i < n; i++)
-				s[i] = new Semester(cs[i]);
-		} catch(Exception e) {
-			System.err.println("Exception\n" + e.getMessage());
-		}
-		DataInputStream dIn = new DataInputStream(System.in);
-		System.out.println("Enter the number of Students: ");
-		int N = 0;
-		try {
-			N = Integer.parseInt(dIn.readLine());
-		} catch (Exception e) {
-			System.err.println("Exception Caught:\n" + e.getMessage());
-		}
-		Student students[] = new Student[N];
-		/*
-		try {
-			Course cs[][] = {
-				{
-					new Course("Introduction to Programming", 3),
-					new Course("OOP with Java", 3)
-				},
-				{
-					new Course("Introduction to DBMS", 3),
-					new Course("Formal Language and Automata", 3)
+				sems[i] = new Semester(cs[i]);
+			DataInputStream dIn = new DataInputStream(System.in);
+			System.out.print("Enter the Semester: ");
+			int S = Integer.parseInt(dIn.readLine()) - 1;
+			int L = cs[S].length;
+			System.out.print("Enter the number of Students: ");
+			int N = Integer.parseInt(dIn.readLine());
+			Student students[] = new Student[N];
+			int grades[] = new int[L];
+			for (int i = 0; i < N; i++) {
+				System.out.print("Name: ");
+				String name = dIn.readLine();
+				System.out.print("Address: ");
+				String addr = dIn.readLine();
+				students[i] = new Student(name, addr, new Registration(collegeID, branchID), sems);
+				for (int j = 0; j < L; j++) {
+					System.out.print("Enter the Grade for " + cs[S][j].courseID() + ": ");
+					grades[j] = Integer.parseInt(dIn.readLine());
 				}
-			};
-			Semester s[] = new Semester[cs.length];
-			for (int i = 0, n = cs.length; i < n; i++)
-				s[i] = new Semester(cs[i]);
-			Student st[] = {
-				new Student("Abhinab Roy", "Dumdum", new Registration(collegeID, branchID), s),
-				new Student("Subinoy Sen", "Kolkata", new Registration(collegeID, branchID), s)
-			};
-			int g[][] = {
-				{
-					7, 8
-				},
-				{
-					9, 9
-				}
-			};
-			for (int i = 0, n = st.length; i < n; i++) {
-				st[i].setGrade(1, g[i]);
-				System.out.println("Registration: " + st[i].getRegist() + "\tCGPA: " + st[i].getGrade());
+				students[i].setGrade(++S, grades);
+				System.out.println("Registration: " + students[i].getRegist() + "\tCGPA: " + students[i].getGrade());
 			}
+			dIn.close();
 		} catch(Exception e) {
 			System.err.println("Exception\n" + e.getMessage());
 		}
-		*/
 	}
 }
